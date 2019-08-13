@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)" class="form-signin">
+    <div *ngIf="errorMessage">
+      <div class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
+    </div>
+    <h2 class="form-signin-heading">Registro</h2>
+    <div class="form-group">
+      <label>(*) Nombres</label>
+      <input required type="text" formControlName="names" name="names" class="form-control" id="namesRegister" placeholder="Nombres">
+      <div *ngIf="registerForm.controls.names.errors" class="invalid-feedback">
+        <div *ngIf="registerForm.controls.names.required">Nombres es requerido.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>(*) Apellidos</label>
+      <input required type="text" formControlName="lastNames" name="lastNames" class="form-control" id="lastNamesRegister" placeholder="Apellidos">
+      <div *ngIf="registerForm.controls.lastNames.errors" class="invalid-feedback">
+        <div *ngIf="registerForm.controls.lastNames.required">Apellidos es requerido.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>(*) Email</label>
+      <input required type="email" formControlName="email" name="email" class="form-control" id="emailRegister" placeholder="Email">
+      <div *ngIf="registerForm.controls.email.errors" class="invalid-feedback">
+        <div *ngIf="registerForm.controls.email.required">Email es requerido.</div>
+        <div *ngIf="registerForm.controls.email.email">Ingrese un email válido.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>(*) Contraseña</label>
+      <input required type="password" formControlName="password" name="password" class="form-control" id="passwordRegister" placeholder="Contraseña">
+      <div *ngIf="registerForm.controls.password.errors" class="invalid-feedback">
+        <div *ngIf="registerForm.controls.password.required">Contraseña es requerido.</div>
+        <div *ngIf="registerForm.controls.email.minLength">La contraseña debe tener un tamaño mínimo de 6 caracteres.</div>
+      </div>
+    </div>
+    <!--<div class="form-group">
+      <label for="exampleInputPassword1">Confirmar contraseña</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>-->
+    <button [disabled]="!registerForm.valid" type="submit" class="btn btn-lg btn-primary btn-block">Registrarse</button>
+  </form>
+</div>
